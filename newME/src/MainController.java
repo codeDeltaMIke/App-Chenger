@@ -30,6 +30,7 @@ public class MainController extends Application {
 
         //VBox space5 = new VBox(5); //spazio tra elementi
         BorderPane root = new BorderPane(); // gestisce Posizione
+        StackPane centerPane = new StackPane();
 
         //cose utili
         String secondColor = "#363636";
@@ -145,7 +146,7 @@ public class MainController extends Application {
 
         viewSet.setFitHeight(32);
         viewSet.setFitWidth(32);
-        
+
         viewGoals.setFitHeight(32);
         viewGoals.setFitWidth(32);
 
@@ -168,17 +169,18 @@ public class MainController extends Application {
         btnSetting.setStyle("-fx-background-color: transparent; -fx-padding: 16px;");
         btnAdd.setStyle("-fx-background-color: transparent; -fx-padding: 16px;");
 
+        VBox listGoals = new VBox(10);
         btnAdd.setOnAction(e -> {
             Button goals = new Button("nuovo obbietivo");
             goals.setStyle("-fx-background-color: green;");
-            
-            root.setCenter(goals);
+
+            listGoals.getChildren().add(goals);
         });
 
         HBox buttom = new HBox(20, btnGoals, btnStats, btnSetting, btnAdd);
         buttom.setAlignment(Pos.CENTER);
 
-        
+
 
         root.setBottom(buttom);
 
@@ -197,8 +199,7 @@ public class MainController extends Application {
         viewSfondo.setFitWidth(400);
         viewSfondo.setTranslateY(-50);
 
-        StackPane centerPane = new StackPane();
-        centerPane.getChildren().addAll(viewSfondo, goalsButton);
+        centerPane.getChildren().addAll(viewSfondo,listGoals);
 
         root.setCenter(centerPane);
         //viewSfondo.setStyle("-fx-z-index: -1;");
