@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
@@ -17,6 +18,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+//retangolo
+import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.Color;
+
 
 public class MainController extends Application {
     private int count = 1;
@@ -40,8 +45,8 @@ public class MainController extends Application {
         Image iconOpzione = new Image(MainController.class.getResourceAsStream("/settings-sliders.png"));
         ImageView viewOpzione = new ImageView(iconOpzione);
 
-        viewOpzione.setFitHeight(50);
-        viewOpzione.setFitWidth(50);
+        viewOpzione.setFitHeight(42);
+        viewOpzione.setFitWidth(42);
         viewOpzione.setPreserveRatio(true);
 
         Button opzioneButton = new Button();
@@ -49,15 +54,8 @@ public class MainController extends Application {
 
         opzioneButton.setStyle("-fx-background-color: transparent;");
 
-       // Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1),  new KeyValue(color));
-        /*HBox opzioneHBox = new HBox(opzioneButton);
-        opzioneHBox.setAlignment(Pos.TOP_RIGHT);
-
-        HBox tit = new HBox(titledPane);
-        tit.setAlignment(Pos.TOP_RIGHT);*/
 
         BorderPane top = new BorderPane();
-        //top.setLeft(titledPane); // per TITOLO
         top.setRight(opzioneButton);
 
         root.setTop(top);
@@ -66,16 +64,10 @@ public class MainController extends Application {
         line.setStartX(5);
         line.setStartY(25);
 
-        line.setEndX(5);
-        line.setEndY(188);
-
-
-
 //center
 
         //goals Button
-
-        Button btnGoal1 = new Button("Completa obiettivo");
+        //Button btnGoal1 = new Button("Completa obiettivo");
 
         VBox goalsButton = new VBox(10);
         goalsButton.setAlignment(Pos.CENTER);
@@ -83,9 +75,7 @@ public class MainController extends Application {
 
         //add button
 
-
-
-        String nameGoal1;
+    /*    String nameGoal1;
         String borderDefault = "-fx-border-style: solid; -fx-border-width: 1px; -fx-border-color:black;";
         Button addButton = new Button("Aggiungi Abbitudine");
         addButton.setStyle("-fx-background-color: #ced4da; -fx-text-fill: black; -fx-border-style: solid; -fx-border-width: 2px; -fx-border-color:black;");
@@ -106,7 +96,7 @@ public class MainController extends Application {
             root.setCenter(goalsButton);
             count++;
         });
-
+*/
 
 
         // Source - https://stackoverflow.com/a
@@ -120,6 +110,14 @@ public class MainController extends Application {
 
 //buttom
 
+        //rettangolo bianco
+        BorderPane boxDown = new BorderPane();
+        Rectangle box = new Rectangle();
+        box.setHeight(50);
+        box.setWidth(50);
+        box.setFill(Color.WHITE);
+        boxDown.setCenter(box);
+        root.setBottom(boxDown);
 
 
         //imagini bottoni
@@ -170,6 +168,13 @@ public class MainController extends Application {
         btnSetting.setStyle("-fx-background-color: transparent; -fx-padding: 16px;");
         btnAdd.setStyle("-fx-background-color: transparent; -fx-padding: 16px;");
 
+        btnAdd.setOnAction(e -> {
+            Button goals = new Button("nuovo obbietivo");
+            goals.setStyle("-fx-background-color: green;");
+            
+            root.setCenter(goals);
+        });
+
         HBox buttom = new HBox(20, btnGoals, btnStats, btnSetting, btnAdd);
         buttom.setAlignment(Pos.CENTER);
 
@@ -183,14 +188,21 @@ public class MainController extends Application {
         scene.getStylesheets().add("style.css");
 
         //sfondo
+
         Image sfondo = new Image(MainController.class.getResourceAsStream("/Gemini_Generated_Image_7064bm7064bm7064.png"));
         ImageView viewSfondo = new ImageView(sfondo);
         viewSfondo.setPreserveRatio(true);
 
         viewSfondo.setFitHeight(600);
-        viewSfondo.setFitHeight(400);
-        viewSfondo.setStyle("-fx-z-index: -1;");
-        root.setCenter(viewSfondo);
+        viewSfondo.setFitWidth(400);
+        viewSfondo.setTranslateY(-50);
+
+        StackPane centerPane = new StackPane();
+        centerPane.getChildren().addAll(viewSfondo, goalsButton);
+
+        root.setCenter(centerPane);
+        //viewSfondo.setStyle("-fx-z-index: -1;");
+        //root.setCenter(viewSfondo);
         //fine sfondo
 
        // root.setStyle("-fx-background-color: "+sfondoColore+";");
