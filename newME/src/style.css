@@ -1,0 +1,12 @@
+.root{
+    -fx-background-color: #BFA9AB;
+}
+
+.btnGoals{
+    -fx-background-color: black;
+    -fx-padding: 16px;
+}
+.goal-card{
+    -fx-background-color:#8f9a85;
+    -fx-background-radius:15;
+}
